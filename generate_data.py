@@ -6,7 +6,7 @@ import os
 random.seed(42)
 np.random.seed(42)
 
-num_records = 500
+num_records = 10
 
 equipment_types = [
     "conveyor",
@@ -93,4 +93,3 @@ df.to_csv('data/maintenance_data.csv', index=False)
 print("Dataset created successfully!")
 print("File saved to: data/maintenance_data.csv")
 print(df.head())
-

@@ -6,7 +6,7 @@ import os
 random.seed(42)
 np.random.seed(42)
 
-num_records = 10
+num_records = 500
 
 equipment_types = [
     "conveyor",

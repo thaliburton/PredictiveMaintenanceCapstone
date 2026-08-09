@@ -121,5 +121,5 @@ st.subheader("Fault Type Count")
 fault_counts = data["fault_type"].value_counts()
 st.bar_chart(fault_counts)
 
-st.subheader("Sample Dataset")
-st.dataframe(data.head(20))
+st.subheader("Full Dataset")
+st.dataframe(data, use_container_width=True)

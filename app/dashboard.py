@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 st.title("Predictive Maintenance Dashboard")
-st.write("this dashboard predicts the equipment failure risk using machine learning.")
+st.write("This dashboard predicts the equipment failure risk using machine learning.")
 
 MODEL_PATH = "models/failure_prediction_model.pkl"
 FEATURES_PATH = "models/failure_model_features.pkl"

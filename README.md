@@ -88,12 +88,11 @@ python -m venv venv
 4. Activate the virtual environment
 
 For Git Bash on Windows:
-
 source venv/Scripts/activate
 
-For PowerShell on Windows:
-
+For PowerShell on Windows:S
 .\venv\Scripts\Activate.ps1
+
 5. Install required packages
 pip install -r requirements.txt
 6. Generate the dataset if needed

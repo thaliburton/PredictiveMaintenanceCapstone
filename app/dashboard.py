@@ -20,7 +20,7 @@ model = joblib.load(MODEL_PATH)
 features = joblib.load(FEATURES_PATH)
 data = pd.read_csv(DATA_PATH)
 
-st.success("model and dataset loaded successfully!")
+st.success("Model and dataset loaded successfully!")
 
 st.header("Enter Equipment Conditions")
 

@@ -90,7 +90,7 @@ python -m venv venv
 For Git Bash on Windows:
 source venv/Scripts/activate
 
-For PowerShell on Windows:S
+For PowerShell on Windows:
 .\venv\Scripts\Activate.ps1
 
 5. Install required packages

@@ -80,7 +80,7 @@ The failure prediction model predicts whether equipment is likely to fail within
 HOW TO RUN THE PROJECT!
 
 1. Clone the repository
-git clone https://github.com/YOUR-USERNAME/PredictiveMaintenanceCapstone.git
+git clone https://github.com/thaliburton/PredictiveMaintenanceCapstone.git
 2. Move into the project folder
 cd PredictiveMaintenanceCapstone
 3. Create a virtual environment

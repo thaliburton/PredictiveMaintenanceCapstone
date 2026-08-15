@@ -84,7 +84,7 @@ git clone https://github.com/thaliburton/PredictiveMaintenanceCapstone.git
 2. Move into the project folder
 cd PredictiveMaintenanceCapstone
 3. Create a virtual environment
-python -m venv venv
+"python -m venv venv"
 4. Activate the virtual environment
 
 For Git Bash on Windows:
@@ -94,11 +94,11 @@ For PowerShell on Windows:
 .\venv\Scripts\Activate.ps1
 
 5. Install required packages
-pip install -r requirements.txt
+"pip install -r requirements.txt"
 6. Generate the dataset if needed
-python generate_data.py
+"python generate_data.py"
 7. Run the Streamlit dashboard
-streamlit run app/dashboard.py
+"python -m streamlit run app/dashboard.py"
 ----------------------------------------------------------------------------------------------------
 Dashboard
 

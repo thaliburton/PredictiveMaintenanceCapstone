@@ -106,12 +106,12 @@ The Streamlit dashboard allows users to enter equipment conditions such as runti
 
 The dashboard then displays:
 
-Failure risk level
-Failure probability
-Likely fault type
-Recommended maintenance action
-Dataset summary charts
-Full maintenance dataset
+Failure risk level,
+Failure probability,
+Likely fault type,
+Recommended maintenance action,
+Dataset summary charts,
+Full maintenance dataset,
 ----------------------------------------------------------------------------------------------------
 Author
 

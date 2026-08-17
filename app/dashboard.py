@@ -1,26 +1,35 @@
 import streamlit as st
 import pandas as pd
 import joblib
-import os
 
 st.set_page_config(
-    page_title = "Predictive Maintenance Dashboard",
-    page_icon = "🛠",
-    layout = "wide",
+    page_title="Predictive Maintenance Dashboard",
+    page_icon="🛠️",
+    layout="wide"
 )
 
 st.title("Predictive Maintenance Dashboard")
-st.write("This dashboard predicts the equipment failure risk using machine learning.")
+st.write("This dashboard predicts equipment failure risk and likely fault type using machine learning.")
 
-MODEL_PATH = "models/failure_prediction_model.pkl"
-FEATURES_PATH = "models/failure_model_features.pkl"
+# File paths
+FAILURE_MODEL_PATH = "models/failure_prediction_model.pkl"
+FAILURE_FEATURES_PATH = "models/failure_model_features.pkl"
+
+FAULT_MODEL_PATH = "models/fault_classification_model.pkl"
+FAULT_FEATURES_PATH = "models/fault_model_features.pkl"
+
 DATA_PATH = "data/maintenance_data.csv"
 
-model = joblib.load(MODEL_PATH)
-features = joblib.load(FEATURES_PATH)
+# Load models, feature lists, and dataset
+failure_model = joblib.load(FAILURE_MODEL_PATH)
+failure_features = joblib.load(FAILURE_FEATURES_PATH)
+
+fault_model = joblib.load(FAULT_MODEL_PATH)
+fault_features = joblib.load(FAULT_FEATURES_PATH)
+
 data = pd.read_csv(DATA_PATH)
 
-st.success("Model and dataset loaded successfully!")
+st.success("Models and dataset loaded successfully!")
 
 st.header("Enter Equipment Conditions")
 
@@ -78,9 +87,9 @@ with col3:
         value=1500
     )
 
-    st.divider()
+st.divider()
 
-if st.button("Predict Failure Risk"):
+if st.button("Predict Maintenance Risk"):
     input_data = pd.DataFrame([{
         "runtime_hours": runtime_hours,
         "temperature": temperature,
@@ -91,21 +100,49 @@ if st.button("Predict Failure Risk"):
         "throughput_rate": throughput_rate
     }])
 
-    input_data = input_data[features]
+    failure_input = input_data[failure_features]
+    fault_input = input_data[fault_features]
 
-    prediction = model.predict(input_data)[0]
-    prediction_probability = model.predict_proba(input_data)[0][1]
+    failure_prediction = failure_model.predict(failure_input)[0]
+    failure_probability = failure_model.predict_proba(failure_input)[0][1]
 
-    if prediction == 1:
-        st.error("Failure Risk: HIGH")
-        st.write("Recommended Action: Schedule maintenance as soon as possible.")
+    fault_prediction = fault_model.predict(fault_input)[0]
+
+    st.subheader("Prediction Results")
+
+    result_col1, result_col2, result_col3 = st.columns(3)
+
+    with result_col1:
+        if failure_prediction == 1:
+            st.error("Failure Risk: HIGH")
+        else:
+            st.success("Failure Risk: LOW")
+
+    with result_col2:
+        st.metric(
+            label="Failure Probability",
+            value=f"{round(failure_probability * 100, 2)}%"
+        )
+
+    with result_col3:
+        st.info(f"Likely Fault Type: {fault_prediction}")
+
+    st.subheader("Recommended Maintenance Action")
+
+    if fault_prediction == "jam":
+        st.write("Inspect conveyor flow, tote alignment, transfer points, and jam-prone areas.")
+    elif fault_prediction == "sensor_fault":
+        st.write("Check photo-eyes, sensor alignment, cabling, sensor cleanliness, and sensor mounting.")
+    elif fault_prediction == "motor_failure":
+        st.write("Inspect motor current, drive faults, bearings, wiring, and mechanical load.")
+    elif fault_prediction == "belt_issue":
+        st.write("Inspect belt tracking, belt tension, rollers, worn belt sections, and belt damage.")
+    elif fault_prediction == "overheating":
+        st.write("Check motor temperature, airflow, equipment load, lubrication, and cooling conditions.")
     else:
-        st.success("Failure Risk: LOW")
-        st.write("Recommended Action: Continue normal monitoring.")
+        st.write("Continue normal monitoring. No immediate fault-specific action is recommended.")
 
-    st.write("Failure Probability:", round(prediction_probability * 100, 2), "%")
-
-    st.divider()
+st.divider()
 
 st.header("Dataset Overview")
 
@@ -122,4 +159,5 @@ fault_counts = data["fault_type"].value_counts()
 st.bar_chart(fault_counts)
 
 st.subheader("Full Dataset")
+st.write(f"Total Records: {len(data)}")
 st.dataframe(data, use_container_width=True)

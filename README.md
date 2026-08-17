@@ -79,26 +79,31 @@ The failure prediction model predicts whether equipment is likely to fail within
 ----------------------------------------------------------------------------------------------------
 HOW TO RUN THE PROJECT!
 
-1. Clone the repository
-git clone https://github.com/thaliburton/PredictiveMaintenanceCapstone.git
-2. Move into the project folder
-cd PredictiveMaintenanceCapstone
-3. Create a virtual environment
-"python -m venv venv"
-4. Activate the virtual environment
+1. Install Python
 
-For Git Bash on Windows:
-source venv/Scripts/activate
+2. Clone the repository: 
+    git clone https://github.com/thaliburton/PredictiveMaintenanceCapstone.git
 
-For PowerShell on Windows:
-.\venv\Scripts\Activate.ps1
+3. Move into the project folder: 
+    cd PredictiveMaintenanceCapstone
+    
+4. Create a virtual environment using: 
+    python -m venv venv
 
-5. Install required packages
-"pip install -r requirements.txt"
-6. Generate the dataset if needed
-"python generate_data.py"
-7. Run the Streamlit dashboard
-"python -m streamlit run app/dashboard.py"
+5. Activate the virtual environment
+    For Git Bash on Windows: source venv/Scripts/activate
+    For PowerShell on Windows: .\venv\Scripts\Activate.ps1
+    
+6. Install required packages: 
+    pip install -r requirements.txt
+
+7. Generate the dataset if needed
+    python generate_data.py
+
+8. Run the Streamlit dashboard
+    python -m streamlit run app/dashboard.py
+
+10. Enter equipment conditions and click Predict Maintenance Risk.
 ----------------------------------------------------------------------------------------------------
 Dashboard
 
